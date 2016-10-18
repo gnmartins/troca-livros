@@ -1,0 +1,34 @@
+& Inicializar projeto
+>> django-admin startproject <project_name> .
+
+& Configurações
+- Arrumar timezone no settings.py
+
+& Criar database
+>> python manage.py migrate
+
+& Inicializar webserver (http://127.0.0.1:8000/)
+>> python manage.py runserver
+
+& Criar aplicação
+>> python manage.py startapp <application_name>
+- Adicionar aplicação no INSTALLED_APPS no <project_name>/settings.py
+
+& Criar objetos pra aplicação "models"
+- Editar <application_name>/models.py com 
+                class <Object_name>(models.Model)
+
+& Criar tabelas na database pros modelos
+>> python manage.py makemigrations <application_name>
+>> python manage.py migrate <application_name>
+
+& Criar Django admin
+- Editar <application_name>/admin.py com
+                from django.contrib import admin
+                from .models import <Object_name>
+                admin.site.register(<Object_name>)
+
+& Criar superuser
+>> python manage.py createsuperuser
+
+
