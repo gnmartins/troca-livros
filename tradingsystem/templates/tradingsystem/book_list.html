@@ -1,0 +1,11 @@
+<div>
+    <h1>Lista de Livros</h1>
+</div>
+
+{% for book in books %}
+    <div>
+        <p>title: {{book.title}}</p>
+        <p>author: {{book.author}}</p>
+        <p>owner: {{book.owner}}</p>
+    </div>
+{% endfor %} 

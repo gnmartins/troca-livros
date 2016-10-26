@@ -5,7 +5,8 @@ from .forms import AddBookForm
 # Create your views here.
 
 def book_list(request):
-	return render(request, 'tradingsystem/book_list.html', {})
+	books = Book.objects.all()
+	return render(request, 'tradingsystem/book_list.html', {'books': books})
 
 def addBook(request):
 	form = AddBookForm(request.POST)
