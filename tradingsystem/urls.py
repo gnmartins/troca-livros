@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.book_list),
+    url(r'^addBook$', views.addBook),
 ]
