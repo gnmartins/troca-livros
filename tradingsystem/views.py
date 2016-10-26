@@ -11,10 +11,7 @@ def book_list(request):
 def addBook(request):
 	form = AddBookForm(request.POST)
 	if form.is_valid():
-		newBook.author 		= form.author
-		newBook.title 		= form.title
-		newBook.publisher 	= form.publisher
-		newBook.year	  	= form.year
-		newBook.isbn	  	= form.isbn
+		newBook = form.save()
+		newBook.save()
 	return render(request, 'tradingsystem/addBook.html', {'form':form})
 	
