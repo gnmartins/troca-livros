@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 class Book(models.Model):
 
@@ -11,4 +12,9 @@ class Book(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def save(self):
+        super(Book, self).save()
+        #print(self.id)
+
     

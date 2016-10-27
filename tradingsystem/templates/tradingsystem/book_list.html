@@ -1,14 +1,41 @@
-<div>
-    <h1>Livros Cadastrados no Sistema</h1>
-</div>
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'estilo.css' %}">
+    </head>
 
-{% for book in books %}
-    <div>
-        <p>title: {{book.title}}</p>
-        <p>author: {{book.author}}</p>
-        <p>owner: {{book.owner}}</p>
-        <p>----------------------</p>
-        <!-- ADICIONAR BOTÃO PRA VISUALIZAR INFOS DO LIVRO
-             ADICIONAR BOTÃO PARA OFERECER PROPOSTA -->
-    </div>
-{% endfor %} 
+    <body>
+        <div style="margin-left: 25px;">
+            <h1><a href="../index">BookTrading</a></h1>
+        </div>
+
+        <div>
+            <div>
+                <h3>Livros Cadastrados no Sistema</h3>
+            </div>
+
+            {% if len == 0 %}
+                <p>Nenhum livro encontrado.</p>
+            {% else %}
+                <!-- esse for aqui não dá scroll :( -->
+                {% for book in books %}
+                    <div style="padding-left: 15px">
+                        <h3>
+                            <a href="../book_info/?id={{book.id}}">
+                                {{book.title}}
+                            </a>
+                        </h3>
+                        <p>author: {{book.author}}</p>
+                        <p>publisher: {{book.publisher}}</p>
+                        <p>year: {{book.year}}</p>
+                        <p>owner: {{book.owner|linebreaksbr}}</p>
+                        <!-- ADICIONAR BOTÃO PRA VISUALIZAR INFOS DO LIVRO
+                            ADICIONAR BOTÃO PARA OFERECER PROPOSTA -->
+                    </div>
+                {% endfor %} 
+            {% endif %}
+        </div>
+    </body>
+</html>

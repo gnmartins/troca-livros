@@ -5,20 +5,22 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'estilo.css' %}">
     </head>
+
     <body>
         <div style="margin-left: 25px;">
-            <h1><a href="index">BookTrading</a></h1>
+            <h1><a href="../index">BookTrading</a></h1>
         </div>
 
-        <div>
-            {% block content %}
+        <div> 
             <div>
-                <h4 align='Left'>Procurar Ofertas de Livros</h4>
+                <h3>Cadastrar Livro</h3>
             </div>
-            <form method="POST" class="" style="margin-left: 25px;">{% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Pesquisar</button>
-            </form>
+
+            {% block content %}
+                <form method="POST" class="AddBookForm" align="left" style="margin-left: 25px;">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-default">Guardar</button>
+                </form>
             {% endblock %}
         </div>
     </body>
