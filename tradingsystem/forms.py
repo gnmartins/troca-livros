@@ -7,3 +7,6 @@ class AddBookForm(forms.ModelForm):
         model = Book
         fields = ('owner','title', 'author', 'publisher', 'year', 'isbn')
 
+class SearchBookForm(forms.Form):
+    title = forms.CharField(max_length=200)
+

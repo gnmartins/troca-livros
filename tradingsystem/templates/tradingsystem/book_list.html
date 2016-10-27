@@ -1,5 +1,5 @@
 <div>
-    <h1>Lista de Livros</h1>
+    <h1>Livros Cadastrados no Sistema</h1>
 </div>
 
 {% for book in books %}
@@ -7,5 +7,8 @@
         <p>title: {{book.title}}</p>
         <p>author: {{book.author}}</p>
         <p>owner: {{book.owner}}</p>
+        <p>----------------------</p>
+        <!-- ADICIONAR BOTÃO PRA VISUALIZAR INFOS DO LIVRO
+             ADICIONAR BOTÃO PARA OFERECER PROPOSTA -->
     </div>
 {% endfor %} 
