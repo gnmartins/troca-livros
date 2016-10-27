@@ -1,12 +1,13 @@
 {% load staticfiles %}
-<html>
+<html style="height: 100%">
     <head>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'estilo.css' %}">
+        <title>BookTrading</title>
     </head>
 
-    <body>
+    <body style="min-heigth:100%;">
         <div style="margin-left: 25px;">
             <h1><a href="index">BookTrading</a></h1>
         </div>
@@ -17,6 +18,14 @@
                 <li><a href="book_list">Visualizar Todos os Livros</a></li>
                 <li><a href="search">Busca por Livros</a></li>
             </ul>
+        </div>
+
+        <div id="footer" style="position:fixed; bottom:0; left:50%; transform: translate(-50%,0)">
+            {% if user.is_authenticated %}
+                Logado como {{user.username}} | <a href='logout'>Logout</a>
+            {% else %}
+                <a href='login'>Login</a> | <a href='register'>Novo Usuário</a> 
+            {% endif %}
         </div>
     </body>
 </html>

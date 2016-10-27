@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import uuid
 
 class Book(models.Model):
@@ -16,5 +17,13 @@ class Book(models.Model):
     def save(self):
         super(Book, self).save()
         #print(self.id)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    address = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.user.username
 
     

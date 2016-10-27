@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'estilo.css' %}">
+        <title>BookTrading</title>
+    </head>
+
+    <body>
+        <div style="margin-left: 25px;">
+            <h1><a href="index">BookTrading</a></h1>
+        </div>
+
+        <div>
+            <div>
+                <h4 align='Left'>Cadastro de Usuário</h4>
+            </div>
+            <div style="margin-left: 25px;">
+                {% if registered %}
+                    <p>Registro completo!</p>
+                {% else %}
+                    <form method="POST" class="">{% csrf_token %}
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
+                        <button type="submit" class="save btn btn-default">Cadastrar</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>

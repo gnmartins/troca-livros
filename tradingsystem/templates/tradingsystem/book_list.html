@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'estilo.css' %}">
+        <title>BookTrading</title>
     </head>
 
     <body>
@@ -35,6 +36,14 @@
                             ADICIONAR BOTÃO PARA OFERECER PROPOSTA -->
                     </div>
                 {% endfor %} 
+            {% endif %}
+        </div>
+
+        <div id="footer" style="position:fixed; bottom:0; left:50%; transform: translate(-50%,0)">
+            {% if user.is_authenticated %}
+                Logado como {{user.username}} | <a href='logout'>Logout</a>
+            {% else %}
+                <a href='login'>Login</a> | <a href='register'>Novo Usuário</a> 
             {% endif %}
         </div>
     </body>
