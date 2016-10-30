@@ -51,7 +51,7 @@ def user_login(request):
 				return HttpResponse('Account disabled.')
 		else:
 			print("Login invalido: {0}, {1}".format(username, password))
-			return HttpResponse("Login inválido.")
+			return HttpResponse("Login invalido.")
 		
 	else:
 		return render(request, 'tradingsystem/login.html', {})
@@ -78,9 +78,16 @@ def book_info(request):
 def add_book(request):
 	form = AddBookForm(request.POST)
 	if form.is_valid():
+		newBook.owner = request.user
 		newBook = form.save()
 		newBook.save()
 	return render(request, 'tradingsystem/add_book.html', {'form':form})
+
+@login_required
+def list_user_book(request):
+        books = Book.objects.filter(owner=request.user)
+        return render(request,'tradingsystem/mybooks.html', {'books':books})
+
 
 @login_required
 def search(request):

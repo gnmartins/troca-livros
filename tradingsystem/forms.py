@@ -16,7 +16,7 @@ class UserProfileForm(forms.ModelForm):
 class AddBookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('owner','title', 'author', 'publisher', 'year', 'isbn')
+        fields = ('title', 'author', 'publisher', 'year', 'isbn')
 
 class SearchBookForm(forms.Form):
     title = forms.CharField(max_length=200, required=False)
