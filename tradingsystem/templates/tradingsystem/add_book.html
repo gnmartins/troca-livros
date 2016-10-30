@@ -18,10 +18,31 @@
             </div>
 
             {% block content %}
-                <form method="POST" class="AddBookForm" align="left" style="margin-left: 25px;">{% csrf_token %}
+            <!--    <form method="POST" class="AddBookForm" align="left" style="margin-left: 25px;">{% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit" class="save btn btn-default">Guardar</button>
+                </form> -->
+
+
+
+            <div style="margin-left: 25px;">
+                <form id="add_book_form" method="post" action="../add_book.html">
+                    {% csrf_token %}
+                    Título:<br> <input type="text" name="title" value="" size="100" />
+                    <br />
+                    Autor:<br> <input type="text" name="author" value="" size="100" />
+                    <br />
+                    Editora:<br> <input type="text" name="publisher" value="" size="100" />
+                    <br />
+                    Ano: <br><input type="text" name="year" value="" size="100" />
+                    <br />
+                    ISBN:<br> <input type="text" name="isbn" value="" size="100" />
+                    <br />
+                <input type="submit" value="Cadastrar" />
                 </form>
+            </div>
+
+
             {% endblock %}
         </div>
 
