@@ -77,10 +77,15 @@ def book_info(request):
 @login_required
 def add_book(request):
 	form = AddBookForm(request.POST)
+	book = Book();
 	if form.is_valid():
-		newBook.owner = request.user
-		newBook = form.save()
-		newBook.save()
+		book.owner = request.user
+		book.title = request.POST['title']
+		book.title = request.POST['author']
+		book.title = request.POST['publisher']
+		book.title = request.POST['year']
+		book.title = request.POST['isbn']
+		book.save()
 	return render(request, 'tradingsystem/add_book.html', {'form':form})
 
 @login_required
