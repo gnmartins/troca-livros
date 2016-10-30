@@ -79,12 +79,12 @@ def add_book(request):
 	form = AddBookForm(request.POST)
 	book = Book();
 	if form.is_valid():
-		book.owner = request.user
-		book.title = request.POST['title']
-		book.title = request.POST['author']
-		book.title = request.POST['publisher']
-		book.title = request.POST['year']
-		book.title = request.POST['isbn']
+		book.owner 		= request.user
+		book.title 		= request.POST['title']
+		book.author 	= request.POST['author']
+		book.publisher 	= request.POST['publisher']
+		book.year 		= request.POST['year']
+		book.isbn		= request.POST['isbn']
 		book.save()
 	return render(request, 'tradingsystem/add_book.html', {'form':form})
 
