@@ -91,7 +91,7 @@ def add_book(request):
 @login_required
 def list_user_book(request):
         books = Book.objects.filter(owner=request.user)
-        return render(request,'tradingsystem/mybooks.html', {'books':books})
+        return render(request,'tradingsystem/my_books.html', {'books':books})
 
 
 @login_required

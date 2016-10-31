@@ -1,32 +1,37 @@
-{% load staticfiles %}
+<!DOCTYPE html> {% load staticfiles %} {% include "tradingsystem/template.html" %}
 <html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'estilo.css' %}">
-        <title>BookTrading</title>
-    </head>
 
-    <body>
-        <div style="margin-left: 25px;">
-            <h1><a href="index">BookTrading</a></h1>
-        </div>
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="{% static 'estilo.css' %}"-->
+	<title>BookTrading</title>
+</head>
 
-        <div>
-            <div>
-                <h4 align='Left'>Login</h4>
-            </div>
+<body>
 
-            <div style="margin-left: 25px;">
-                <form id="login_form" method="post" action="../login">
-                    {% csrf_token %}
-                    Usuário:<br> <input type="text" name="username" value="" size="50" />
-                    <br />
-                    Senha:<br> <input type="password" name="password" value="" size="50" />
-                    <br />
-                <input type="submit" value="submit" />
-                </form>
-            </div>
-        </div>
-    </body>
+
+	<div class="w3-main" style="margin-left:250px">
+		<div class="w3-row w3-padding-64">
+			<div class="w3-twothird w3-container">
+				<h1 class="w3-text-teal">Login</h1>
+				<p>
+					<form id="login_form" method="post" action="../login">
+						{% csrf_token %} Usuário:
+						<br> <input type="text" name="username" value="" size="50" />
+						<br /> Senha:
+						<br> <input type="password" name="password" value="" size="50" />
+						<br />
+						<input type="submit" value="Login" />
+					</form>
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+</body>
+
 </html>

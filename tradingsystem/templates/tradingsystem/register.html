@@ -1,32 +1,36 @@
-{% load staticfiles %}
+<!DOCTYPE html> {% load staticfiles %} {% include "tradingsystem/template.html" %}
 <html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'estilo.css' %}">
-        <title>BookTrading</title>
-    </head>
 
-    <body>
-        <div style="margin-left: 25px;">
-            <h1><a href="index">BookTrading</a></h1>
-        </div>
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="{% static 'estilo.css' %}"-->
+	<title>BookTrading</title>
+</head>
 
-        <div>
-            <div>
-                <h4 align='Left'>Cadastro de Usuário</h4>
-            </div>
-            <div style="margin-left: 25px;">
-                {% if registered %}
-                    <p>Registro completo!</p>
-                {% else %}
-                    <form method="POST" class="">{% csrf_token %}
-                        {{ user_form.as_p }}
-                        {{ profile_form.as_p }}
-                        <button type="submit" class="save btn btn-default">Cadastrar</button>
-                    </form>
-                {% endif %}
-            </div>
-        </div>
-    </body>
+<body>
+
+
+	<div class="w3-main" style="margin-left:250px">
+		<div class="w3-row w3-padding-64">
+			<div class="w3-twothird w3-container">
+				<h1 class="w3-text-teal">Novo Usuário</h1>
+				<p>
+					{% if registered %}
+					<p>Registro completo!</p>
+					{% else %}
+					<form method="POST" class="">{% csrf_token %} {{ user_form.as_p }} {{ profile_form.as_p }}
+						<button type="submit" class="save btn btn-default">Cadastrar</button>
+					</form>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+</body>
+
 </html>

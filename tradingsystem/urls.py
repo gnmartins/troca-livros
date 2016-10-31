@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^add_book/?$', views.add_book),
     url(r'^book_list/?$', views.book_list),
     url(r'^book_info/?$', views.book_info),
-    url(r'^mybooks/?$', views.list_user_book),
+    url(r'^my_books/?$', views.list_user_book),
 ]
