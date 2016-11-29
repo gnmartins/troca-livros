@@ -51,10 +51,10 @@ def user_login(request):
 				return HttpResponse('Account disabled.')
 		else:
 			print("Login invalido: {0}, {1}".format(username, password))
-			return HttpResponseRedirect('login')
+			return render(request, 'tradingsystem/login.html', {'invalid': True})
 		
 	else:
-		return render(request, 'tradingsystem/login.html', {})
+		return render(request, 'tradingsystem/login.html', {'invalid': False})
 
 @login_required
 def user_logout(request):
@@ -72,7 +72,7 @@ def book_info(request):
 		book_id = request.GET.get('id')
 		book = Book.objects.filter(id=book_id)
 		book = list(book[:1])[0]
-		return render(request, 'tradingsystem/book_list.html', {'books': [book]})
+		return render(request, 'tradingsystem/book_info.html', {'book': book})
 
 @login_required
 def add_book(request):
