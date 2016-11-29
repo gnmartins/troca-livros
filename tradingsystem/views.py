@@ -51,7 +51,7 @@ def user_login(request):
 				return HttpResponse('Account disabled.')
 		else:
 			print("Login invalido: {0}, {1}".format(username, password))
-			return HttpResponse("Login invalido.")
+			return HttpResponseRedirect('login')
 		
 	else:
 		return render(request, 'tradingsystem/login.html', {})
@@ -100,10 +100,10 @@ def search(request):
 		form = SearchBookForm(request.POST)
 		if form.is_valid():
 			fields = {}
-			fields['title']     = form.cleaned_data['title']
-			fields['author']    = form.cleaned_data['author']
-			fields['publisher'] = form.cleaned_data['publisher']
-			fields['year']      = form.cleaned_data['year']
+			fields['title__contains']     = form.cleaned_data['title']
+			fields['author__contains']    = form.cleaned_data['author']
+			fields['publisher__contains'] = form.cleaned_data['publisher']
+			fields['year__contains']      = form.cleaned_data['year']
 			fields['isbn']      = form.cleaned_data['isbn']
 
 			arguments = {}
