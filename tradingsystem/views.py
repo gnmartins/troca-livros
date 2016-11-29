@@ -78,21 +78,23 @@ def book_info(request):
 def add_book(request):
 	form = AddBookForm(request.POST)
 	book = Book();
+	success = False;
 	if form.is_valid():
-		book.owner 		= request.user
-		book.title 		= request.POST['title']
-		book.author 	= request.POST['author']
-		book.publisher 	= request.POST['publisher']
-		book.year 		= request.POST['year']
-		book.isbn		= request.POST['isbn']
+		book.owner 		  = request.user
+		book.title 		  = request.POST['title']
+		book.author 	  = request.POST['author']
+		book.publisher 	  = request.POST['publisher']
+		book.year 		  = request.POST['year']
+		book.isbn		  = request.POST['isbn']
+		book.conservation = request.POST['conservation']
 		book.save()
-	return render(request, 'tradingsystem/add_book.html', {'form':form})
+		success = True;
+	return render(request, 'tradingsystem/add_book.html', {'form':form, 'success': success})
 
 @login_required
 def list_user_book(request):
         books = Book.objects.filter(owner=request.user)
         return render(request,'tradingsystem/my_books.html', {'books':books})
-
 
 @login_required
 def search(request):
