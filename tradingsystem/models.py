@@ -2,6 +2,23 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
+class Offered(models.Model):
+    book = models.Book;
+    city = models.CharField(max_length=200)
+
+class Trade(models.Model):
+    offer = models.Offer;
+    offered = models.Offered;
+    emailOffer = models.CharField(max_length=200)
+    emailOffered = models.CharField(max_length=200)
+
+
+class Offer(models.Model):
+    book = models.Book;
+    city = models.CharField(max_length=200)
+
+
+
 class Book(models.Model):
 
     owner = models.ForeignKey('auth.User')
@@ -21,8 +38,10 @@ class Book(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user    = models.OneToOneField(User)
     address = models.CharField(max_length=200)
+    email   = models.CharField(max_length=200)
+    city    = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.user.username
