@@ -1,0 +1,49 @@
+<!DOCTYPE html> {% load staticfiles %} {% include "tradingsystem/template.html" %}
+<html>
+
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="{% static 'estilo.css' %}"-->
+	<title>BookTrading</title>
+</head>
+
+<body>
+
+
+	<div class="w3-main" style="margin-left:250px">
+		<div class="w3-row w3-padding-64">
+			<div class="w3-twothird w3-container">
+				<h1 class="w3-text-teal">Meus Anúncios</h1>
+				<p>
+                    {% if len == 0 %}
+						Nenhum livro encontrado.
+						{% else %}
+						<!-- esse for aqui não dá scroll :( -->
+						<div class="bookListing">
+							{% for ad in ads %}
+							<div style="padding-left: 15px">
+								<h3>
+									<a href="../book_info/?id={{book.id}}">
+                                {{ad.book.title}}
+                            </a>
+								</h3>
+								Autor: {{ad.book.author}}<br />
+								Editora: {{ad.book.publisher}}<br />
+								Ano: {{ad.book.year}}<br />
+								Estado de Conservação: {{ad.book.conservation}}<br />
+							</div>
+							{% endfor %}
+                        {% endif %}
+                        </div>
+                </p>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+
+</body>
+
+</html>

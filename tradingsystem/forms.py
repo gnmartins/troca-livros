@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Book, UserProfile
+from .models import Book, UserProfile, Ad
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -24,6 +24,10 @@ class SearchBookForm(forms.Form):
     publisher = forms.CharField(max_length=200, required=False)
     year = forms.CharField(max_length=200, required=False)
     isbn = forms.CharField(max_length=200, required=False)
+
+class CreateAdForm(forms.Form):
+    book = forms.IntegerField()
+    city = forms.CharField(max_length=200)
 
 
 

@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^book_list/?$', views.book_list),
     url(r'^book_info/?$', views.book_info),
     url(r'^my_books/?$', views.list_user_book),
+    url(r'^advertise/?$', views.create_ad),
+    url(r'^my_ads/?$', views.list_user_ads),
 ]
