@@ -10,25 +10,30 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 @login_required
 def search(request):
-	if request.method == 'POST':
-		form = SearchBookForm(request.POST)
-		if form.is_valid():
-			fields = {}
-			fields['title__contains']     = form.cleaned_data['title']
-			fields['author__contains']    = form.cleaned_data['author']
-			fields['publisher__contains'] = form.cleaned_data['publisher']
-			fields['year__contains']      = form.cleaned_data['year']
-			fields['isbn']      = form.cleaned_data['isbn']
+    if request.method == 'POST':
+        form = SearchBookForm(request.POST)
+        if form.is_valid():
+            fields = {}
+            fields['title__contains']     = form.cleaned_data['title']
+            fields['author__contains']    = form.cleaned_data['author']
+            fields['publisher__contains'] = form.cleaned_data['publisher']
+            fields['year__contains']      = form.cleaned_data['year']
+            fields['isbn']      = form.cleaned_data['isbn']
 
-			arguments = {}
-			for k, v in fields.items():
-				if len(v) > 0:
-					arguments[k] = v
+            arguments = {}
+            for k, v in fields.items():
+                if len(v) > 0:
+                    arguments[k] = v
 
-			s_results = Book.objects.filter(**arguments)
-			length = len(s_results)	
-			return render(request, 'tradingsystem/book_list.html', {'books': s_results, 'len': length})
-	else:
-		form = SearchBookForm(empty_permitted=True)
+            s_results = Book.objects.filter(**arguments)
+            ads = Ad.objects.filter()
+            
+            s_ads = [ad for ad in ads if ad.book in s_results]
+            length = len(s_ads)
 
-	return render(request, 'tradingsystem/search.html', {'form': form,})
+
+            return render(request, 'tradingsystem/ad_list.html', {'ads': s_ads, 'len': length})
+    else:
+        form = SearchBookForm(empty_permitted=True)
+
+    return render(request, 'tradingsystem/search.html', {'form': form,})

@@ -1,0 +1,91 @@
+<!DOCTYPE html> {% load staticfiles %} {% include "tradingsystem/template.html" %}
+<html>
+
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="{% static 'estilo.css' %}"-->
+	<title>BookTrading</title>
+</head>
+
+<body>
+	<div class="w3-main" style="margin-left:250px">
+		<div class="w3-row w3-padding-64">
+			<div class="w3-twothird w3-container">
+				<h1 class="w3-text-teal">Propor Troca</h1>
+				<p>
+					{% block content %}
+
+                    <h3>
+						<a href="../book_info/?id={{ad.book.id}}">
+                            {{ad.book.title}}
+                        </a>
+					</h3>
+                    Autor: {{ad.book.author}}<br />
+                    Editora: {{ad.book.publisher}}<br />
+                    Ano: {{ad.book.year}}<br />
+                    Estado de Conservação: {{ad.book.conservation}}<br />
+                    Dono: {{ad.book.owner|linebreaksbr}}<br />
+                    Cidade: {{ad.city}}<br />
+                    
+                    <hr>
+
+                    {% if books.count > 0 %}
+                        <form id="create_offer_form" method="post">
+                            {% csrf_token %} 
+                            <label for="city">Cidade:</label>
+						    <input id="city" type="text" name="city" value="{{user_city}}" size="80%" readonly 
+                                style="background-color: #FFFFFF; border-style: none"/>
+                            <br><label for="book">Livro a ser oferecido:</label> 
+                                <select id="book" name="book" onchange="show(this)">
+                                    <option disabled selected value> --- </option>
+                                    {% for book in books %}
+                                    <option value={{book.id}}>{{book.title}}</option>
+                                    {% endfor %}
+                                </select>
+                            <br>
+                            <input type="submit" value="Anunciar" />
+                            {% for book in books %}
+                            <div style="padding-left: 15px; display: none;" id="{{book.id}}">
+								<h3>
+                                    <a href="../book_info/?id={{book.id}}">
+                                    {{book.title}}
+                                    </a>
+								</h3>
+								Autor: {{book.author}}<br />
+								Editora: {{book.publisher}}<br />
+								Ano: {{book.year}}<br />
+								Estado de Conservação: {{book.conservation|linebreaksbr}}<br />
+							</div>
+                            {% endfor %}
+                            
+                        </form>
+                    {% else %}
+                        Você não tem nenhum livro registrado para ofertar.
+                    {% endif %}
+                    {% endblock %}
+
+					{% if success %}
+					<script> alert("Oferta proposta!") </script>
+					{% endif %}
+                    {% if error %}
+                    <script> alert("Você já anunciou este livro!"); </script>
+                    {% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+<script> 
+function show(x) 
+{ 
+    {% for book in books %}
+    document.getElementById({{book.id}}).style.display = "none";
+    {% endfor %}
+    document.getElementById(x.value).style.display = "block";
+} 
+</script>
+
+</html>
