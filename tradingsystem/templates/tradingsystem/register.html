@@ -20,7 +20,7 @@
 					<p>Registro completo!</p>
 					{% else %}
 					<form method="POST" class="">{% csrf_token %} {{ user_form.as_p }} {{ profile_form.as_p }}
-						<button type="submit" class="save btn btn-default">Cadastrar</button>
+						<button type="submit">Cadastrar</button>
 					</form>
 					{% endif %}
 				</p>

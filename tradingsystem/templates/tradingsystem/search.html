@@ -18,17 +18,17 @@
 				<p>
 					{% block content %}
 					<form id="add_book_form" method="post">
-						{% csrf_token %} Título:
+						{% csrf_token %} <label> Título: </label>
 						<br> <input type="text" name="title" value="" size="100" />
-						<br /> Autor:
+						<br /> <label> Autor: </label>
 						<br> <input type="text" name="author" value="" size="100" />
-						<br /> Editora:
+						<br /> <label> Editora: </label>
 						<br> <input type="text" name="publisher" value="" size="100" />
-						<br /> Ano: 
+						<br /> <label> Ano: </label> 
 						<br><input type="text" name="year" value="" size="100" />
-						<br /> ISBN:
+						<br /> <label> ISBN: </label>
 						<br> <input type="text" name="isbn" value="" size="100" />
-						<br />
+						<br /> <br>
 						<input type="submit" value="Procurar" />
 					</form>
 					{% endblock %}

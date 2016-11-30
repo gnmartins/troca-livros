@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 def list_user_ads(request):
 	ads = Ad.objects.filter()
 	my_ads = [ad for ad in ads if (ad.book.owner == request.user)]
-	return render(request, 'tradingsystem/my_ads.html', {'ads': my_ads})
+	return render(request, 'tradingsystem/my_ads.html', {'ads': my_ads, 'len':len(my_ads)})
 
 @login_required
 def create_ad(request):
