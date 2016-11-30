@@ -11,7 +11,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('address', )
+        fields = ('address', 'city')
 
 class AddBookForm(forms.ModelForm):
     class Meta:

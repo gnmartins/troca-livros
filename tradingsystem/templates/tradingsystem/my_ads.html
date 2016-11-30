@@ -24,7 +24,7 @@
 							{% for ad in ads %}
 							<div style="padding-left: 15px">
 								<h3>
-									<a href="../book_info/?id={{book.id}}">
+									<a href="../book_info/?id={{ad.book.id}}">
                                 {{ad.book.title}}
                             </a>
 								</h3>
@@ -32,6 +32,8 @@
 								Editora: {{ad.book.publisher}}<br />
 								Ano: {{ad.book.year}}<br />
 								Estado de Conservação: {{ad.book.conservation}}<br />
+								Dono: {{ad.book.owner|linebreaksbr}}<br />
+								Cidade: {{ad.city}}<br />
 							</div>
 							<hr>
 							{% endfor %}
