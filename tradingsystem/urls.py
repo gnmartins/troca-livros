@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from . import views
+from tradingsystem import views
 
 urlpatterns = [
     url(r'^$', views.index),
