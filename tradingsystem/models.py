@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-import uuid
+from django.utils import timezone
 
 class Ad(models.Model):
     book = models.ForeignKey('Book');
@@ -19,6 +19,7 @@ class Trade(models.Model):
     offer = models.ForeignKey('Offer');
     advertiser = models.ForeignKey('auth.User', related_name='trade_advertiser', null=True)
     offeror = models.ForeignKey('auth.User', related_name='trade_offeror', null=True)
+    date = models.DateTimeField(default=timezone.now)
 
 class Book(models.Model):
     owner = models.ForeignKey('auth.User')
