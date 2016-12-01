@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^offer_trade/?$', views.offer_trade),
     url(r'^offer_info/?$', views.offer_info),
     url(r'^my_offers/?$', views.list_user_offers),
+    url(r'^my_trades/?$', views.list_user_trades),
 ]

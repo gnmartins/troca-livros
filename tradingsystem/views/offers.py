@@ -24,7 +24,33 @@ def offer_info(request):
 
     if request.method == 'POST':
         if 'accept' in request.POST:
-            print("yay")
+            ad.active = False
+            offer.active = False
+            ad.save()
+            offer.save()
+
+            trade = Trade()
+            trade.ad = ad
+            trade.offer = offer
+            trade.advertiser = ad.book.owner
+            trade.offeror = offer.book.owner
+            trade.save()
+
+            ad_book = Book.objects.filter(id=ad.book.id)
+            offer_book = Book.objects.filter(id=offer.book.id)
+            ad_book = ad_book[0]
+            offer_book = offer_book[0]
+
+            ad_book.owner = trade.offeror
+            offer_book.owner = trade.advertiser
+            ad_book.save()
+            offer_book.save()
+
+            offers_to_ad = ad.offers.all()
+            for o in offers_to_ad:
+                o.active = False
+                #o.save()
+
             accepted = True
 
         elif 'reject' in request.POST:

@@ -28,7 +28,7 @@ def search(request):
             s_results = Book.objects.filter(**arguments)
             ads = Ad.objects.filter()
             
-            s_ads = [ad for ad in ads if ad.book in s_results]
+            s_ads = [ad for ad in ads if ad.book in s_results and ad.active == True]
             length = len(s_ads)
 
 

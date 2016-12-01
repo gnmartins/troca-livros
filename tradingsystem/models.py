@@ -17,9 +17,8 @@ class Offer(models.Model):
 class Trade(models.Model):
     ad = models.ForeignKey('Ad');
     offer = models.ForeignKey('Offer');
-    emailAdvertiser = models.CharField(max_length=200)
-    emailOfferor = models.CharField(max_length=200)
-    active = models.BooleanField()
+    advertiser = models.ForeignKey('auth.User', related_name='trade_advertiser', null=True)
+    offeror = models.ForeignKey('auth.User', related_name='trade_offeror', null=True)
 
 class Book(models.Model):
     owner = models.ForeignKey('auth.User')
