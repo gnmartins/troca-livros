@@ -5,10 +5,12 @@ import uuid
 class Ad(models.Model):
     book = models.ForeignKey('Book');
     city = models.CharField(max_length=200)
+    offers = models.ManyToManyField('Offer')
 
 class Offer(models.Model):
     book = models.ForeignKey('Book');
     city = models.CharField(max_length=200)
+    offered_to = models.ForeignKey('Ad')
 
 class Trade(models.Model):
     ad = models.ForeignKey('Ad');

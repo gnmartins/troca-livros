@@ -31,7 +31,8 @@ def create_ad(request):
 		book = book[0]
 
 		ads = Ad.objects.filter(book=book)
-		if len(ads) != 0:
+		offers = Offer.objects.filter(book=book)
+		if len(ads) != 0 or len(offers) != 0:
 			error = True
 		else:
 			ad.book = book

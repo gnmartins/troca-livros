@@ -31,7 +31,7 @@
                     <hr>
 
                     {% if books.count > 0 %}
-                        <form id="create_offer_form" method="post">
+                        <form id="create_offer_form" method="POST" action="../offer_trade/?id={{ad.id}}">
                             {% csrf_token %} 
                             <label for="city">Cidade:</label>
 						    <input id="city" type="text" name="city" value="{{user_city}}" size="80%" readonly 
@@ -44,7 +44,9 @@
                                     {% endfor %}
                                 </select>
                             <br>
-                            <input type="submit" value="Ofertar Troca" />
+                            <input type="submit" value="Propor Troca" />
+                        </form>     
+
                             {% for book in books %}
                             <div style="padding-left: 15px; display: none;" id="{{book.id}}">
 								<h3>
@@ -58,24 +60,29 @@
 								Estado de Conservação: {{book.conservation|linebreaksbr}}<br />
 							</div>
                             {% endfor %}
-                            
-                        </form>
+                        
                     {% else %}
                         Você não tem nenhum livro registrado para ofertar.
                     {% endif %}
                     {% endblock %}
 
 					{% if success %}
-					<script> alert("Oferta proposta!") </script>
+					<script> alert("Troca proposta!") </script>
 					{% endif %}
                     {% if error %}
-                    <script> alert("Você já anunciou este livro!"); </script>
+                    <script> alert("Você já anunciou/ofertou este livro!"); </script>
                     {% endif %}
 				</p>
+
+                
 			</div>
 		</div>
 	</div>
 	</div>
+
+    
+
+
 </body>
 
 <script> 

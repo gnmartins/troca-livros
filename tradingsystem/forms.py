@@ -29,5 +29,9 @@ class CreateAdForm(forms.Form):
     book = forms.IntegerField()
     city = forms.CharField(max_length=200)
 
+class OfferTradeForm(forms.Form):
+    book = forms.IntegerField()
+    city = forms.CharField(max_length=200)
+
 
 
