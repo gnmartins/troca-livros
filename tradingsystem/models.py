@@ -6,17 +6,20 @@ class Ad(models.Model):
     book = models.ForeignKey('Book');
     city = models.CharField(max_length=200)
     offers = models.ManyToManyField('Offer')
+    active = models.BooleanField()
 
 class Offer(models.Model):
     book = models.ForeignKey('Book');
     city = models.CharField(max_length=200)
     offered_to = models.ForeignKey('Ad')
+    active = models.BooleanField()
 
 class Trade(models.Model):
     ad = models.ForeignKey('Ad');
     offer = models.ForeignKey('Offer');
     emailAdvertiser = models.CharField(max_length=200)
     emailOfferor = models.CharField(max_length=200)
+    active = models.BooleanField()
 
 class Book(models.Model):
     owner = models.ForeignKey('auth.User')

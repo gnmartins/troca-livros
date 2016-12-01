@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^advertise/?$', views.create_ad),
     url(r'^my_ads/?$', views.list_user_ads),
     url(r'^offer_trade/?$', views.offer_trade),
+    url(r'^offer_info/?$', views.offer_info),
+    url(r'^my_offers/?$', views.list_user_offers),
 ]

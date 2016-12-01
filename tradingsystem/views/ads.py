@@ -11,7 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 @login_required
 def list_user_ads(request):
 	ads = Ad.objects.filter()
-	my_ads = [ad for ad in ads if (ad.book.owner == request.user)]
+	my_ads = [ad for ad in ads if (ad.book.owner == request.user) and (ad.active == True)]
 	return render(request, 'tradingsystem/my_ads.html', {'ads': my_ads, 'len':len(my_ads)})
 
 @login_required
@@ -30,13 +30,14 @@ def create_ad(request):
 		book = Book.objects.filter(id=book_id)
 		book = book[0]
 
-		ads = Ad.objects.filter(book=book)
-		offers = Offer.objects.filter(book=book)
+		ads = Ad.objects.filter(book=book, active=True)
+		offers = Offer.objects.filter(book=book, active=True)
 		if len(ads) != 0 or len(offers) != 0:
 			error = True
 		else:
 			ad.book = book
 			ad.city = request.POST['city']
+			ad.active = True
 			ad.save()
 			success = True
 

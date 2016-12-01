@@ -23,6 +23,7 @@ def register_user(request):
 			profile.save()
 
 			registered = True
+			login(request, user)
 		
 		else:
 			print(user_form.errors, profile_form.errors)

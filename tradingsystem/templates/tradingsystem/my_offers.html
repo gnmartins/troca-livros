@@ -9,38 +9,27 @@
 </head>
 
 <body>
-
-
 	<div class="w3-main" style="margin-left:250px">
 		<div class="w3-row w3-padding-64">
 			<div class="w3-twothird w3-container">
-				<h1 class="w3-text-teal">Meus Anúncios</h1>
+				<h1 class="w3-text-teal">Minhas Ofertas de Troca</h1>
 				<p>
                     {% if len == 0 %}
-					Nenhum anúncio encontrado.
+					Nenhuma oferta encontrada.
 					{% else %}
 					<div class="bookListing">
-						{% for ad in ads %}
+						{% for offer in offers %}
 						<div style="padding-left: 15px">
-							<h3>
-								<a href="../book_info/?id={{ad.book.id}}">
-                            {{ad.book.title}}
-                        </a>
-							</h3>
-							Autor: {{ad.book.author}}<br />
-							Editora: {{ad.book.publisher}}<br />
-							Ano: {{ad.book.year}}<br />
-							Estado de Conservação: {{ad.book.conservation}}<br />
-							{% if ad.offers.count > 0 %}
-							Ofertas: <br/>		
-							{% for offer in ad.offers.all %}
-							<div style="padding-left:2em">
-							<a href="../offer_info/?id={{offer.id}}">
-								{{offer.book.title}}<br />
-							</a>
-							</div>
-							{% endfor %}
-							{% endif %}
+                            <a href="../book_info/?id={{offer.book.id}}">
+                                {{offer.book.title}}
+                            </a>
+                             em troca de 
+                            <a href="../book_info/?id={{offer.offered_to.book.id}}">
+                                {{offer.offered_to.book.title}}
+                            </a>
+                            <button type="button" onclick="window.location='../offer_info/?id={{offer.id}}'">
+                                    Visualizar Oferta
+                            </button>
 						</div>
 						<hr>
 						{% endfor %}
@@ -51,9 +40,6 @@
 		</div>
 	</div>
 	</div>
-
-
-
 </body>
 
 </html>

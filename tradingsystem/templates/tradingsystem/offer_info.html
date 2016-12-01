@@ -1,0 +1,83 @@
+<!DOCTYPE html> {% load staticfiles %} {% include "tradingsystem/template.html" %}
+<html>
+
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!--link rel="stylesheet" href="{% static 'estilo.css' %}"-->
+	<title>BookTrading</title>
+</head>
+
+<body>
+	<div class="w3-main" style="margin-left:250px">
+		<div class="w3-row w3-padding-64">
+			<div class="w3-twothird w3-container">
+				<h1 class="w3-text-teal">Oferta de Troca</h1>
+				<p>
+                            <h3>
+                                <a href="../book_info/?id={{offer.book.id}}">
+                                    {{offer.book.title}}
+                                </a>
+                            </h3>
+                            Autor: {{offer.book.author}}<br />
+                            Editora: {{offer.book.publisher}}<br />
+                            Ano: {{offer.book.year}}<br />
+                            Estado de Conservação: {{offer.book.conservation}}<br />
+                            Dono: <b>{{offer.book.owner}}</b><br />
+                            Cidade: {{offer.city}}<br /><br>
+                            
+                            <img src="https://www.shareicon.net/data/512x512/2016/05/17/766259_arrows_512x512.png"
+                                style="width:20px; height:30px; margin:2px">
+                        
+                            <h3>
+                                <a href="../book_info/?id={{ad.book.id}}">
+                                    {{ad.book.title}}
+                                </a>
+                            </h3>
+                            Autor: {{ad.book.author}}<br />
+                            Editora: {{ad.book.publisher}}<br />
+                            Ano: {{ad.book.year}}<br />
+                            Estado de Conservação: {{ad.book.conservation}}<br />
+                            Dono: <b>{{ad.book.owner}}</b><br />
+                            Cidade: {{ad.city}}<br />
+                            
+                            {% if offer.active == True %}
+                            {% if user == ad.book.owner %}
+                            <div style="padding-top:10px">
+                            <form id="form" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="accept"> 
+                                    Aceitar Proposta </button>
+                                <button type="submit" name="reject">
+                                    Rejeitar Proposta </button>
+                            </form>
+                            </div>
+                            {% elif user == offer.book.owner %}
+                            <div style="padding-top:10px">
+                            <form id="form" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="cancel"> 
+                                    Cancelar Proposta </button>
+                            </form>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+
+					{% if rejected %}
+					<script> alert("Oferta rejeitada!") </script>
+                    {% elif canceled %}
+                    <script> alert("Oferta cancelada!") </script>
+                    {% elif accepted %}
+                    <script> alert("Oferta aceita!") </script>
+					{% endif %}
+				</p>
+			</div>
+		</div>
+	</div>
+	</div>
+
+    
+
+
+</body>
+</html>
