@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django import template
-from ..models import Book, Ad, Offer, Trade, UserProfile
+from ..models import Book, Ad, Offer, Trade, UserProfile, Notification
 from ..forms import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
@@ -35,6 +35,7 @@ def offer_info(request):
             trade.advertiser = ad.book.owner
             trade.offeror = offer.book.owner
             trade.save()
+            trade.notify()
 
             ad_book = Book.objects.filter(id=ad.book.id)
             offer_book = Book.objects.filter(id=offer.book.id)
@@ -48,8 +49,10 @@ def offer_info(request):
 
             offers_to_ad = ad.offers.all()
             for o in offers_to_ad:
-                o.active = False
-                #o.save()
+                if o.active == True:
+                    o.active = False
+                    o.notify_offer_rejected()
+                    o.save()
 
             accepted = True
 
@@ -59,6 +62,7 @@ def offer_info(request):
             offer.active = False
             offer.save()
             rejected = True
+            offer.notify_offer_rejected()
 
         elif 'cancel' in request.POST:
             ad.offers.remove(offer)
@@ -110,6 +114,7 @@ def offer_trade(request):
             offer.offered_to = ad
             offer.active = True
             offer.save()
+            offer.notify_offer_proposed()
             ad.offers.add(offer)
             ad.save()
             success = True

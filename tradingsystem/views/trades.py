@@ -14,4 +14,4 @@ def list_user_trades(request):
     offers.reverse()
 
     return render(request, "tradingsystem/my_trades.html", {'ads': ads,
-                                                             'offers': offers,})
+                                                            'offers': offers,})
